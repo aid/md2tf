@@ -6,6 +6,9 @@ import (
 	"os"
 )
 
+//
+// Initialise a new MD_File structure based upon
+// the provided input filename of a Markdown file.
 func new_md_file(input_filename string) MD_File {
 	languages := scan_md_languages(input_filename)
 
@@ -16,6 +19,13 @@ func new_md_file(input_filename string) MD_File {
 	}
 }
 
+//
+// Process the arguments provided on the command line
+// when this tool is called.
+//
+// Primarily; gather the directories and files included
+// on the command line and use these to create a slice
+// of MD_File objects that describe the selected files.
 func process_args(md_files *[]MD_File) {
 	flag.Parse()
 
@@ -50,6 +60,7 @@ func process_args(md_files *[]MD_File) {
 	}
 }
 
+// Entry point for this tool.
 func main() {
 	var md_files []MD_File = make([]MD_File, 0, 10)
 

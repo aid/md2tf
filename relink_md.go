@@ -6,6 +6,9 @@ import (
 	"syscall"
 )
 
+//
+// Moves the temporary files created by process_md into their final
+// locations.
 func relink_md_files(md_files *[]MD_File) {
 	var err error
 

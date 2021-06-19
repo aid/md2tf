@@ -100,6 +100,12 @@ func process_file(input_file *os.File, output_file *os.File, language string) er
 	return nil
 }
 
+//
+// Use the provided input_filename and the provided language
+// to create a temporary file; returning the file and its
+// filename to the caller.
+//
+// The caller is responsible for closing the returned file.
 func create_temp_file(input_filename string, language string) (temp_filename string, temp_file *os.File, err error) {
 	if debug || true {
 		fmt.Printf("md2tf_create_temp_file: input_filename='%s' language='%s'\n", input_filename, language)
@@ -169,6 +175,15 @@ func process_file_with_language(input_filename string, language string) (temp_fi
 	return temp_filename, output_filename, nil
 }
 
+//
+// Takes a slice of MD_File objects and uses the data within
+// to process each input file into one temporary file for
+// each required language within that file.
+//
+// This function updates the MD_File slice to include a mapping
+// of temporary to final (output) filenames; to allow
+// the caller to place the files in their final location
+// if no errors have been detected.
 func process_md_files(md_files *[]MD_File) {
 	for _, md_file := range *md_files {
 		for _, language := range md_file.languages {

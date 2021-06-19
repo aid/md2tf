@@ -4,6 +4,8 @@ import (
 	"bytes"
 )
 
+// Returns true if the provided string, s, is present within
+// the array slice, s, else returns false.
 func string_present_in_list(s string, l *[]string) bool {
 	for _, v := range *l {
 		if v == s {
@@ -13,6 +15,12 @@ func string_present_in_list(s string, l *[]string) bool {
 	return false
 }
 
+// Checks to see if two array slices of contain exactly
+// the same strings; although without concern for the
+// order.
+//
+// Returns true if both lists contains the same strings;
+// else returns false.
 func unordered_lists_are_equal(a *[]string, b *[]string) bool {
 	// First check lengths match
 	if len(*a) != len(*b) {
@@ -35,6 +43,10 @@ func unordered_lists_are_equal(a *[]string, b *[]string) bool {
 	return true
 }
 
+// This is a customised version of the standard Go ScanLines
+// function; however this splits into lines whilst including
+// and line terminators - unlike the original Go function that
+// strips the line terminators.
 func ScanLinesReturningTerminator(data []byte, atEOF bool) (advance int, token []byte, err error) {
 	if atEOF && len(data) == 0 {
 		return 0, nil, nil

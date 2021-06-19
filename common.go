@@ -1,12 +1,15 @@
 package main
 
+// Struct used to record the state of the tool as it
+// moves through a Markdown file.
 const (
-	State_MD               = iota
-	State_MD_Comment       = iota
-	State_MD_FencedBlock   = iota
-	State_MD_LanguageBlock = iota
+	State_MD               = iota // General Markdown Prose
+	State_MD_Comment       = iota // Within a Markdown (HTML) Comment
+	State_MD_FencedBlock   = iota // Within a Markdown Fenced Block that we do not care about
+	State_MD_LanguageBlock = iota // Within a Markdown Fenced Block that we do care about
 )
 
+// Control for whether we show debug output, or not
 var debug = false
 
 // Struct that maps the temporary filenames that are initially
